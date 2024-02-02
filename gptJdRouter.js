@@ -26,14 +26,15 @@ gptJobDescriptionsRouter
     
     console.log('req.body: ', req.body);
 
-    let { jobTitle, jobDescription, employmentType, locationRequired, yoe, skillsRequired  } = req.body;
+    let { jobTitle, jobDescription, employmentType, locationRequired, yoe, skillsRequired, company  } = req.body;
 
-    jobTitle = jobTitle ? jobTitle.toLowerCase() : '';
-    jobDescription = jobDescription ? jobDescription.toLowerCase() : ' ';
-    employmentType = employmentType ? employmentType.toLowerCase() : ' ';
-    locationRequired = locationRequired ? locationRequired.toLowerCase() : ' ';
-    yoe = yoe ? yoe.toLowerCase() : '';
-    skillsRequired = skillsRequired ? skillsRequired.toLowerCase() : ' ';
+    jobTitle = jobTitle ? jobTitle.toLowerCase() : 'no title provided, make up a title';
+    jobDescription = jobDescription ? jobDescription.toLowerCase() : 'no description provided, make up a description';
+    employmentType = employmentType ? employmentType.toLowerCase() : "no employment type provided, don't assume anything";
+    locationRequired = locationRequired ? locationRequired.toLowerCase() : "location not provided, don't assume anything";
+    yoe = yoe ? yoe.toLowerCase() : "years of experience not provided, don't assume anything";
+    skillsRequired = skillsRequired ? skillsRequired.toLowerCase() : "assume the skills according to the other fields";
+    company = company ? company.toLowerCase() : "company not provided, don't assume anything";
 
     const prompt = `Job Title: ${jobTitle}\nJob Requirements: ${jobDescription}\nEmployment Type: ${employmentType}\nLocation Required: ${locationRequired}\nYears of Experience: ${yoe}\nSkills Required: ${skillsRequired}\n`;
 
